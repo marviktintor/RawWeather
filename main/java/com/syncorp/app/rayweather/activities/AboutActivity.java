@@ -2,6 +2,7 @@ package com.syncorp.app.rayweather.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,6 +23,8 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("About Rayweather");
+
+        Snackbar.make(toolbar,getSimpleWeather(),Snackbar.LENGTH_INDEFINITE).show();
     }
 
     @Override
@@ -45,5 +48,10 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String getSimpleWeather() {
+
+        return "Success";
     }
 }
