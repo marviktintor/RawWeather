@@ -1,0 +1,42 @@
+{
+  "coord": {
+    "lon": 34.75,
+    "lat": 0.28
+  },
+  "weather": [
+    {
+      "id": 802,
+      "main": "Clouds",
+      "description": "scattered clouds",
+      "icon": "03d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 27.87,
+    "pressure": 1019,
+    "humidity": 45,
+    "temp_min": 26,
+    "temp_max": 30
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 4.1,
+    "deg": 240
+  },
+  "clouds": {
+    "all": 40
+  },
+  "dt": 1459155600,
+  "sys": {
+    "type": 1,
+    "id": 6411,
+    "message": 0.1296,
+    "country": "KE",
+    "sunrise": 1459136548,
+    "sunset": 1459180148
+  },
+  "id": 195272,
+  "name": "Kakamega",
+  "cod": 200
+}
