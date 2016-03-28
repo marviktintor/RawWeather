@@ -76,13 +76,13 @@ public strictfp class WeatherUtils {
      * @return
      * @throws JSONException
      */
-    public final int getWeatherMain() throws JSONException {
-        int weatherID = -1;
+    public final String getWeatherMain() throws JSONException {
+        String weatherMain = "";
         for (int i = 0; i < getWeather().length(); i++) {
             JSONObject weatherInfo = (JSONObject) getWeather().get(i);
-            weatherID = weatherInfo.getInt(WeatherJSON.Weather.MAIN);
+            weatherMain = weatherInfo.getString(WeatherJSON.Weather.MAIN);
         }
-        return weatherID;
+        return weatherMain;
     }
 
     /**
@@ -91,13 +91,13 @@ public strictfp class WeatherUtils {
      * @return
      * @throws JSONException
      */
-    public final int getWeatherDescription() throws JSONException {
-        int weatherID = -1;
+    public final String getWeatherDescription() throws JSONException {
+        String weatherDescription = "";
         for (int i = 0; i < getWeather().length(); i++) {
             JSONObject weatherInfo = (JSONObject) getWeather().get(i);
-            weatherID = weatherInfo.getInt(WeatherJSON.Weather.DESCRIPTION);
+            weatherDescription = weatherInfo.getString(WeatherJSON.Weather.DESCRIPTION);
         }
-        return weatherID;
+        return weatherDescription;
     }
 
     /**
