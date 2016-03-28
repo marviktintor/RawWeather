@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:title="Disable Sunday Notifications"
+        android:key="key_csun"/>
+    <CheckBoxPreference
+        android:title="Disable Monday Notifications"
+        android:key="key_cmon"/>
+    <CheckBoxPreference
+        android:title="Disable Tuesday Notifications"
+        android:key="key_ctue"/>
+    <CheckBoxPreference
+        android:title="Disable Wednesday Notifications"
+        android:key="key_cwed"/>
+    <CheckBoxPreference
+        android:title="Disable Thursday Notifications"
+        android:key="key_cthur"/>
+    <CheckBoxPreference
+        android:title="Disable Friday Notifications"
+        android:key="key_cfri"/>
+    <CheckBoxPreference
+        android:title="Disable Saturday Notifications"
+        android:key="key_csat"/>
+</PreferenceScreen>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:title="Status Bar Notifications"
+        android:key="key_status" />
+    <CheckBoxPreference
+        android:title="Ringtone Notifications"
+        android:key="key_ring" />
+    <EditTextPreference
+        android:title="Geographical Settings"
+        android:key="key_geo" />
+</PreferenceScreen>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="key_sun"
+        android:title="Sunday" />
+    <EditTextPreference
+        android:key="key_mon"
+        android:title="Monday" />
+    <EditTextPreference
+        android:key="key_tue"
+        android:title="Tuesday" />
+    <EditTextPreference
+        android:key="key_wed"
+        android:title="Wednesday" />
+    <EditTextPreference
+        android:key="key_thur"
+        android:title="Thursday" />
+    <EditTextPreference
+        android:key="key_fri"
+        android:title="Friday" />
+    <EditTextPreference
+        android:key="key_sat"
+        android:title="Saturday" />
+</PreferenceScreen>

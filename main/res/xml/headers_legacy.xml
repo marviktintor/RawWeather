@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="@string/header_general">
+        <intent
+            android:action="@string/category_general"
+            android:targetClass="com.syncorp.app.rayweather.fragments.SettingsFragment"
+            android:targetPackage="com.syncorp.app.rayweather.fragments" />
+    </Preference>
+    <Preference android:title="@string/header_theming">
+        <intent
+            android:action="@string/category_theming"
+            android:targetClass="com.syncorp.app.rayweather.fragments.SettingsFragment"
+            android:targetPackage="com.syncorp.app.rayweather.fragments"/>
+    </Preference>
+    <Preference android:title="@string/header_advanced">
+        <intent
+            android:action="@string/category_advanced"
+            android:targetClass="com.syncorp.app.rayweather.fragments.SettingsFragment"
+            android:targetPackage="com.syncorp.app.rayweather.fragments" />
+    </Preference>
+    <Preference android:title="@string/header_upgrade">
+        <intent
+            android:action="@string/category_upgrade"
+            android:targetClass="com.syncorp.app.rayweather.fragments.SettingsFragment"
+            android:targetPackage="com.syncorp.app.rayweather.fragments"/>
+    </Preference>
+</PreferenceScreen>

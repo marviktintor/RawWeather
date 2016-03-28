@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Rayweather</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="title_activity_about">About Rayweather</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_weekly_forecast">This Week</string>
+    <string name="title_activity_daily_forecast">Today </string>
+    <string name="title_activity_my_preferences">My Preferences</string>
+    <string name="title_activity_details">Details</string>
+
+
+    <string name="header_general">General</string>
+    <string name="header_theming">Theming</string>
+    <string name="header_myprefs">My Ideal Weather</string>
+    <string name="header_notifications">Preference Notifications</string>
+    <string name="header_advanced">Advanced</string>
+    <string name="header_upgrade">Upgrade to Pro</string>
+
+    <string name="extra_category">category</string>
+    <string name="category_general">category_general</string>
+    <string name="category_theming">category_theming</string>
+    <string name="category_myprefs">category_myprefs</string>
+    <string name="category_notifications">category_notifications</string>
+    <string name="category_advanced">category_advanced</string>
+    <string name="category_upgrade">category_upgrade</string>
+
+    <string name="openweathermap_api_key">d7eb855384351f5b48409282edce9c33</string>
+    <string name="image_download_uri">http://openweathermap.org/img/w/{$IMAGE_ID}.png</string>
+
+    <string name="study_jams_banner_ads">ca-app-pub-6551609151535558/1152820223</string>
+    <string name="study_jams_interstitial_ads">ca-app-pub-6551609151535558/2629553424</string>
+
+</resources>

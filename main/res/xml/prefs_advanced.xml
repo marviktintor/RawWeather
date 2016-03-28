@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <RingtonePreference
+        android:title="Choose Ringtone"
+        android:key="key_ringtone" />
+    <SwitchPreference
+        android:title="Enable Vibration"
+        android:key="key_vibe"/>
+</PreferenceScreen>
