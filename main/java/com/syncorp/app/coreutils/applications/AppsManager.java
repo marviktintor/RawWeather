@@ -10,13 +10,15 @@ import android.content.pm.PermissionGroupInfo;
 import android.net.Uri;
 import android.provider.Settings;
 
+import com.syncorp.app.coreutils.constants.Constants;
+import com.syncorp.app.coreutils.io.handler.FilesHandler;
+import com.syncorp.app.coreutils.utils.Utilities;
+import com.syncorp.app.rayweather.R;
+
 import java.io.File;
 import java.util.List;
 
-import coreutils.constants.Constants;
-import coreutils.io.handler.FilesHandler;
-import coreutils.utils.Utilities;
-import geeky.texttoaudio.R;
+
 
 public class AppsManager {
 

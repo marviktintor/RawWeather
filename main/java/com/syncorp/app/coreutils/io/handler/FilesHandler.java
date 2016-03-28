@@ -1,10 +1,11 @@
 package com.syncorp.app.coreutils.io.handler;
 
+import com.syncorp.app.coreutils.io.reader.FileStreamReader;
+import com.syncorp.app.coreutils.io.writer.FileStreamWriter;
+
 import java.io.File;
 import java.io.IOException;
 
-import coreutils.io.reader.FileStreamReader;
-import coreutils.io.writer.FileStreamWriter;
 
 
 public class FilesHandler {

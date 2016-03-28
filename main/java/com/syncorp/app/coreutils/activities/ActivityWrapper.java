@@ -7,6 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.syncorp.app.coreutils.applications.AppsManager;
 import com.syncorp.app.coreutils.fragments.FragmentWrapper;
 import com.syncorp.app.coreutils.utils.Utilities;
