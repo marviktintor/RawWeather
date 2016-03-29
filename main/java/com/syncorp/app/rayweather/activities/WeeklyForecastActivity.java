@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.syncorp.app.rayweather.R;
 import com.syncorp.app.rayweather.adapters.WeeklyWeatherAdapter;
+import com.syncorp.app.rayweather.datamodels.ForecastedWeatherModel;
 import com.syncorp.app.rayweather.datamodels.WeatherModel;
 
 import java.util.ArrayList;
@@ -44,6 +45,13 @@ public class WeeklyForecastActivity extends AppCompatActivity {
         weatherInfo = (RecyclerView) findViewById(R.id.weatherInfo);
         weatherInfo.setAdapter(weatherAdapter);
         weatherInfo.setLayoutManager(layoutManager);
+
+    }
+
+    public List<ForecastedWeatherModel> createForecastedWeatherModel() {
+        List<ForecastedWeatherModel> forecastedWeatherModels = new ArrayList<>();
+        ForecastedWeatherModel forecastedWeatherModel = new ForecastedWeatherModel();
+        return forecastedWeatherModels;
 
     }
 

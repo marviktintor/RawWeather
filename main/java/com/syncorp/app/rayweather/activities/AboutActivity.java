@@ -2,7 +2,6 @@ package com.syncorp.app.rayweather.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,16 +10,10 @@ import android.view.MenuItem;
 import com.syncorp.app.rayweather.R;
 import com.syncorp.app.rayweather.utils.weather.WeatherUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 public class AboutActivity extends AppCompatActivity {
+
     private Toolbar toolbar;
+    private WeatherUtils weatherUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +26,9 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("About Rayweather");
 
-        Snackbar.make(toolbar, getSimpleWeather(), Snackbar.LENGTH_INDEFINITE).show();
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,25 +53,7 @@ public class AboutActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public String getSimpleWeather() {
 
-        try {
-            InputStream open = getResources().getAssets().open("forecast.json");
-            InputStreamReader inputStreamReader = new InputStreamReader(open);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            String readData = "";
-            StringBuffer stringBuffer = new StringBuffer();
-            while ((readData = bufferedReader.readLine()) != null) {
-                stringBuffer.append(readData);
-            }
-            return new WeatherUtils(new JSONObject(stringBuffer.toString())).getWeatherDescription();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return e.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return e.toString();
-        }
-    }
+
 }
