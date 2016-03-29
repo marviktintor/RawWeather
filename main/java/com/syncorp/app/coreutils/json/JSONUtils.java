@@ -16,7 +16,7 @@ public class JSONUtils {
      * @return
      */
     public static final Double optDouble(JSONObject jsonObject, String name) {
-        return opt(jsonObject, name);
+        return (Double) opt(jsonObject, name);
     }
 
     /**
