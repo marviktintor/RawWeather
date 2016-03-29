@@ -52,7 +52,7 @@ public strictfp class WeatherUtils {
      * @throws JSONException
      */
     public final JSONArray getWeather() throws JSONException {
-        return new JSONArray(JSONUtils.optString(getWeatherJSON(), WeatherJSON.WEATHER));
+        return JSONUtils.optJSONArray(getWeatherJSON(), WeatherJSON.WEATHER);
     }
 
     /**
@@ -139,8 +139,9 @@ public strictfp class WeatherUtils {
      * @throws JSONException
      */
     public final JSONObject getMain() throws JSONException {
-        return new JSONObject(JSONUtils.optString(getWeatherJSON(), WeatherJSON.MAIN));
+        return JSONUtils.optJSONObject(getWeatherJSON(), WeatherJSON.MAIN);
     }
+
 
     /**
      * get the temperatures
@@ -148,8 +149,8 @@ public strictfp class WeatherUtils {
      * @return temperature value in metrics
      * @throws JSONException
      */
-    public final float getTemperature() throws JSONException {
-        return JSONUtils.optInt(getMain(), WeatherJSON.Main.TEMPERATURE);
+    public final double getTemperature() throws JSONException {
+        return JSONUtils.optDouble(getMain(), WeatherJSON.Main.TEMPERATURE);
     }
 
     /**
