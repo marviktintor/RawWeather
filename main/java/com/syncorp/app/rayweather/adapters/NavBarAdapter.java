@@ -14,7 +14,7 @@ import com.syncorp.app.rayweather.R;
 import com.syncorp.app.rayweather.activities.AboutActivity;
 import com.syncorp.app.rayweather.activities.MyPreferencesActivity;
 import com.syncorp.app.rayweather.activities.SettingsActivity;
-import com.syncorp.app.rayweather.activities.WeeklyForecastActivity;
+import com.syncorp.app.rayweather.activities.FullDayForecastActivity;
 import com.syncorp.app.rayweather.datamodels.NavBarModel;
 
 import java.util.Collections;
@@ -69,7 +69,7 @@ public class NavBarAdapter extends RecyclerView.Adapter<NavBarAdapter.Navigation
                             break;
                         case 1:
                             Toast.makeText(context, "This Week's Forecast", Toast.LENGTH_SHORT).show();
-                            context.startActivity(new Intent(context, WeeklyForecastActivity.class));
+                            context.startActivity(new Intent(context, FullDayForecastActivity.class));
                             break;
                         case 2:
                             Toast.makeText(context, "App Settings", Toast.LENGTH_SHORT).show();

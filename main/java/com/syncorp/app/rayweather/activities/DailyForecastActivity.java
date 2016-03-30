@@ -2,14 +2,21 @@ package com.syncorp.app.rayweather.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.syncorp.app.rayweather.R;
+import com.syncorp.app.rayweather.utils.weather.WeatherUtils;
+import com.syncorp.app.rayweather.worker.DummyWorker;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +28,9 @@ public class DailyForecastActivity extends AppCompatActivity {
     private TextView ddate;
     private TextView temp;
     private TextView hum;
+
+    private WeatherUtils weatherUtils;
+    private DummyWorker dummyWorker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +52,40 @@ public class DailyForecastActivity extends AppCompatActivity {
         long currentTime = System.currentTimeMillis();
 
 
-        wicon.setImageResource(R.drawable.sunny);
-        dday.setText(new SimpleDateFormat("dd EEE").format(new Date(currentTime)));
-        ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(currentTime)));
-        temp.setText("76/51");
-        hum.setText("60 hpa");
+        try {
+            dummyWorker = new DummyWorker(this);
+            weatherUtils = new WeatherUtils(new JSONObject(dummyWorker.getTodayWeatherJSON()));
+            showWeatherInfo();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Snackbar snackbar = Snackbar.make(temp, "Cannot load weather information", Snackbar.LENGTH_INDEFINITE);
+            snackbar.setAction("Close", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+            snackbar.show();
+        }
+        if (false) {
+            wicon.setImageResource(R.drawable.sunny);
+            dday.setText(new SimpleDateFormat("dd EEE").format(new Date(currentTime)));
+            ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(currentTime)));
+            temp.setText("76/51");
+            hum.setText("60 hpa");
+        }
+    }
 
+    private void showWeatherInfo() throws JSONException {
+
+        wicon.setImageResource(R.drawable.sunny); // TODO USE DOWNLOADED WEATHER ICON
+
+        dday.setText(new SimpleDateFormat("EEE").format(new Date(System.currentTimeMillis())));
+        ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(System.currentTimeMillis())));
+
+
+        temp.setText(String.format("%.2f", weatherUtils.getTemperature()));
+        hum.setText(String.format("%d", weatherUtils.getHumidity()));
     }
 
     @Override

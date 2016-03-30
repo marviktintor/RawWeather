@@ -46,12 +46,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            dummyWorker = new DummyWorker(MainActivity.this);
-            weatherUtils = new WeatherUtils(new JSONObject(dummyWorker.getTodayWeatherJSON()));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
@@ -79,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         hum = (TextView) findViewById(R.id.hum);
 
         try {
+            dummyWorker = new DummyWorker(MainActivity.this);
+            weatherUtils = new WeatherUtils(new JSONObject(dummyWorker.getTodayWeatherJSON()));
             showWeatherInfo();
         } catch (JSONException e) {
             e.printStackTrace();

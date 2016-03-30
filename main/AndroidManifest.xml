@@ -36,7 +36,7 @@
                 android:value="com.syncorp.app.rayweather.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.WeeklyForecastActivity"
+            android:name=".activities.FullDayForecastActivity"
             android:label="@string/title_activity_weekly_forecast"
             android:parentActivityName=".MainActivity"></activity>
         <activity
