@@ -16,4 +16,14 @@ public class OpenWeatherAPI {
     public static final String COUNTRY_CODE = "ke";
     public static final String CITY_CODE = "Kakamega";
     public static final String WEATHE_ICON_URI = "http://openweathermap.org/img/w/${IMAGE_ID}.png";
+
+    /**
+     * Tags used in the open weather map api
+     */
+    public class Tags {
+        /**
+         * Weather icon image tag
+         */
+        public static final String WEATHER_ICON_IMAGE = "${IMAGE_ID}";
+    }
 }

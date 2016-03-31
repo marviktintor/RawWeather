@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
-        android:key="key_sun"
-        android:title="Sunday" />
+        android:inputType="number"
+        android:key="key_cloud_cover"
+        android:title="Cloud Cover" />
     <EditTextPreference
-        android:key="key_mon"
-        android:title="Monday" />
+        android:inputType="number"
+        android:key="key_temperatures"
+        android:title="Temperature" />
     <EditTextPreference
-        android:key="key_tue"
-        android:title="Tuesday" />
+        android:inputType="number"
+        android:key="key_humidity"
+        android:title="Humidity" />
     <EditTextPreference
-        android:key="key_wed"
-        android:title="Wednesday" />
+        android:inputType="number"
+        android:key="key_wind_speed"
+        android:title="Wind Speed" />
     <EditTextPreference
-        android:key="key_thur"
-        android:title="Thursday" />
-    <EditTextPreference
-        android:key="key_fri"
-        android:title="Friday" />
-    <EditTextPreference
-        android:key="key_sat"
-        android:title="Saturday" />
+        android:inputType="number"
+        android:key="key_visibility"
+        android:title="Visibility" />
 </PreferenceScreen>

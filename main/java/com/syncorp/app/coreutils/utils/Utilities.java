@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.syncorp.app.coreutils.accounts.UserAccountsManager;
 import com.syncorp.app.coreutils.database.utils.DatabaseUtilities;
+import com.syncorp.app.coreutils.preferences.Prefs;
 import com.syncorp.app.rayweather.R;
 
 import org.json.JSONArray;
@@ -58,7 +59,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
-
 
 
 public class Utilities {
@@ -310,7 +310,7 @@ public class Utilities {
         if (!networkConnected && alert) {
             sendNotification(notificationId, title, message);
         }
-        return true/*networkConnected*/;
+        return networkConnected;
     }
 
     private void sendNotification(int notificationId, String title, String message) {
@@ -637,6 +637,13 @@ public class Utilities {
         return duration;
     }
 
+    /**
+     * Creates a homescreen shortcut
+     *
+     * @param launchIntent
+     * @param shortcutIcon
+     * @param shortcutLabel
+     */
     public void createHomesScreenShortcut(Intent launchIntent, int shortcutIcon, String shortcutLabel) {
 
 
@@ -660,6 +667,54 @@ public class Utilities {
      */
     public String getDateProperty(String pattern, long timeMillis) {
         return new SimpleDateFormat(pattern, Locale.getDefault()).format(new Date(timeMillis));
+    }
+
+    /**
+     * Formats date
+     *
+     * @param pattern
+     * @param timeMillis
+     * @return
+     */
+    public String formatTime(String pattern, long timeMillis) {
+        return new SimpleDateFormat(pattern).format(new Date(timeMillis));
+    }
+
+    /**
+     * Gets time scope
+     *
+     * @param callTime
+     * @return
+     */
+    private long getTimeScope(long callTime) {
+        return System.currentTimeMillis() - callTime;
+    }
+
+    /**
+     * Return formatted date
+     *
+     * @param callTime
+     * @return
+     */
+    public String getFormattedDate(long callTime) {
+        if (getTimeScope(callTime) < Prefs.TIME_SCOPE_TWO_DAYS) {
+            if (getTimeScope(callTime) < Prefs.TIME_SCOPE_ONE_DAY) {
+                if (formatTime("EEE dd LLL yyy", callTime).equals(formatTime("EEE dd LLL yyy", System.currentTimeMillis()))) {
+                    return Prefs.CALL_DATE_TODAY;
+                }
+                if(callTime>System.currentTimeMillis() && (getTimeScope(callTime)> Prefs.TIME_SCOPE_ONE_DAY && getTimeScope(callTime) < Prefs.TIME_SCOPE_TWO_DAYS)){
+                    return Prefs.CALL_DATE_TOMORROW;
+                }
+                if(callTime<System.currentTimeMillis()){
+                    return Prefs.CALL_DATE_YESTERDAY;
+                }
+
+            }
+
+        }
+
+        //This is a very old call --  Return The Call Date
+        return formatTime("EEE dd", callTime);
     }
 
     public void showSimpleSnackBar(View view, String text, String actionText, @NonNull final Intent action) {

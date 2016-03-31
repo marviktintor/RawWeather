@@ -15,8 +15,9 @@ public class WeatherForecastsModel {
     private String weatherDescription;
     private double temperature;
     private int humidity;
+    private String weatherIconFileUri;
 
-    public WeatherForecastsModel(String day, String date, Bitmap weatherIcon,  String condition, String weatherDescription, double temperature, int humidity) {
+    public WeatherForecastsModel(String day, String date, Bitmap weatherIcon, String condition, String weatherDescription, double temperature, int humidity, String weatherIconFileUri) {
         this.day = day;
         this.date = date;
         this.weatherIcon = weatherIcon;
@@ -24,6 +25,7 @@ public class WeatherForecastsModel {
         this.weatherDescription = weatherDescription;
         this.temperature = temperature;
         this.humidity = humidity;
+        this.weatherIconFileUri = weatherIconFileUri;
     }
 
     public String getDay() {
@@ -52,5 +54,9 @@ public class WeatherForecastsModel {
 
     public int getHumidity() {
         return humidity;
+    }
+
+    public String getWeatherIconFileUri() {
+        return weatherIconFileUri;
     }
 }

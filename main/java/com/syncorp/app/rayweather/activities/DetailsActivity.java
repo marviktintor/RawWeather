@@ -9,11 +9,15 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.syncorp.app.coreutils.utils.Utilities;
 import com.syncorp.app.rayweather.R;
+import com.syncorp.app.rayweather.constants.AppConstants;
 
 public class DetailsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private TextView condition;
+    private TextView conditionDescription;
     private ImageView wicon;
     private TextView dday;
     private TextView ddate;
@@ -32,20 +36,28 @@ public class DetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Details");
 
+        condition = (TextView) findViewById(R.id.condition);
+        conditionDescription = (TextView) findViewById(R.id.condition_description);
         wicon = (ImageView) findViewById(R.id.wIcon);
         dday = (TextView) findViewById(R.id.dday);
         ddate = (TextView) findViewById(R.id.ddate);
         temp = (TextView) findViewById(R.id.temphi);
         hum = (TextView) findViewById(R.id.hum);
 
-        Intent i = getIntent();
-        Bundle b = i.getExtras();
+        receiveExtras();
+    }
 
-        wicon.setImageResource(b.getInt("rID"));
-        dday.setText(b.getString("day"));
-        ddate.setText(b.getString("date"));
-        temp.setText(b.getString("temp"));
-        hum.setText(b.getString("hum") + " hpa");
+    private void receiveExtras() {
+        Intent intent = getIntent();
+        String weatherIconFileUri = intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_ICON);
+        wicon.setImageBitmap(new Utilities(DetailsActivity.this).getFileBitmap(weatherIconFileUri));
+        dday.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_WEEK_DAY));
+        ddate.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_DATE));
+        temp.setText("" + intent.getDoubleExtra(AppConstants.Intents.WeatherForecastDetails.TEMPERATURES, 23) +"F");
+        hum.setText("" + intent.getIntExtra(AppConstants.Intents.WeatherForecastDetails.HUMIDITY, 0) +"hpa");
+
+        condition.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_CONDITION));
+        conditionDescription.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_WEATHER_DESCRIPTION));
 
     }
 

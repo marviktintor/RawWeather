@@ -3,6 +3,8 @@ package com.syncorp.app.coreutils.downloader;
 import android.content.Context;
 import android.content.Intent;
 
+import com.syncorp.app.coreutils.intents.Intents;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,7 +40,7 @@ public final class Downloader {
                     int count = 0;
                     byte[] buffer = new byte[1024];
 
-                    File fileDir = new File(filePath);
+                    File fileDir = new File(new File(filePath).getParent());
 
                     if (!fileDir.exists()) {
                         fileDir.mkdirs();
@@ -56,7 +58,7 @@ public final class Downloader {
                         fileOutputStream.write(buffer, 0, count);
                     }
 
-                    context.sendBroadcast(new Intent("com.marvik.apps.coreutils.downloader.Downloader.ACTION_FILE_DOWNLOADED"));
+                    context.sendBroadcast(new Intent(Intents.Broadcasts.ACTION_FILE_DOWNLOADED));
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

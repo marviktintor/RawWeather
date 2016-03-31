@@ -11,21 +11,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:orientation="vertical">
 
-        <com.syncorp.app.rayweather.views.SquaredFrameLayout
-            android:id="@+id/vImageRoot"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="condition"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <ImageView
-                android:id="@+id/wIcon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
 
-        </com.syncorp.app.rayweather.views.SquaredFrameLayout>
+        <ImageView
+            android:id="@+id/wIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+
+
+        <TextView
+            android:id="@+id/condition_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="condition description"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -47,12 +62,13 @@
                     android:layout_height="wrap_content"
                     android:text="Day"
                     android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/dash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/dday"
                     android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/dday"
                     android:text=" : "
                     android:textSize="20sp" />
 
@@ -93,6 +109,7 @@
                         android:layout_below="@+id/temp"
                         android:paddingLeft="25dp"
                         android:text="60"
+                        android:textColor="@android:color/holo_blue_dark"
                         android:textSize="25sp" />
 
                     <TextView
@@ -115,6 +132,7 @@
                         android:layout_below="@+id/humidity"
                         android:paddingRight="23dp"
                         android:text="60 hpa"
+                        android:textColor="@android:color/holo_green_dark"
                         android:textSize="25sp" />
                 </RelativeLayout>
 
