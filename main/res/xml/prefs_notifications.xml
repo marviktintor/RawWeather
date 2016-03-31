@@ -2,17 +2,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
         android:key="key_cloud_cover_notification"
-        android:title="Disable Cloud cover Notifications" />
+        android:title="Enable Cloud cover Notifications" />
     <CheckBoxPreference
         android:key="key_temperature_notification"
-        android:title="Disable Temperature Notifications" />
+        android:title="Enable Temperature Notifications" />
     <CheckBoxPreference
         android:key="key_humidity_notification"
-        android:title="Disable Humidity Notifications" />
+        android:title="Enable Humidity Notifications" />
     <CheckBoxPreference
         android:key="key_wind_speed_notification"
-        android:title="Disable Wind Speed Notifications" />
+        android:title="Enable Wind Speed Notifications" />
     <CheckBoxPreference
         android:key="key_visibility_notification"
-        android:title="Disable Visibility Notifications" />
+        android:title="Enable Visibility Notifications" />
 </PreferenceScreen>

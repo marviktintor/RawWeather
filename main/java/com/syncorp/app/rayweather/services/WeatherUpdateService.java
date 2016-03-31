@@ -48,7 +48,7 @@ public class WeatherUpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 3000, 2000, PendingIntent.getBroadcast(getApplicationContext(), 1,
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 3000, 10000, PendingIntent.getBroadcast(getApplicationContext(), 1,
                 new Intent(AppConstants.Intents.WeatherUpdates.ACTION_REQUEST_NEW_WEATHER_UPDATES), PendingIntent.FLAG_UPDATE_CURRENT));
         return super.onStartCommand(intent, flags, startId);
     }

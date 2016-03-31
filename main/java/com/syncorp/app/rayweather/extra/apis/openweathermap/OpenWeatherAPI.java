@@ -10,8 +10,10 @@ public class OpenWeatherAPI {
     public static final String WEATHER = "weather";
     public static final String LOCATION = "weather";
 
-    public static final String WEEKLY_FORECAST_URI = "http://api.openweathermap.org/data/2.5/forecast?q=Kakamega,ke&mode=json&units=metrics&appid=d7eb855384351f5b48409282edce9c33";
-    public static final String TODAY_WEATHER_URI = "http://api.openweathermap.org/data/2.5/weather?q=Kakamega&appid=d7eb855384351f5b48409282edce9c33&units=metric";
+    public static final String WEEKLY_FORECAST_URI = "http://api.openweathermap.org/data/2.5/forecast?q=${GEO_LOCATION},ke&mode=json&units=metrics&appid=d7eb855384351f5b48409282edce9c33";
+
+    public static final String TODAY_WEATHER_URI = "http://api.openweathermap.org/data/2.5/weather?q=${GEO_LOCATION}&appid=d7eb855384351f5b48409282edce9c33&units=metric";
+
     public static final String APP_ID = "d7eb855384351f5b48409282edce9c33";
     public static final String COUNTRY_CODE = "ke";
     public static final String CITY_CODE = "Kakamega";
@@ -25,5 +27,10 @@ public class OpenWeatherAPI {
          * Weather icon image tag
          */
         public static final String WEATHER_ICON_IMAGE = "${IMAGE_ID}";
+
+        /**
+         * Geo location string tag
+         */
+        public static final String GEO_LOCATION = "${GEO_LOCATION}";
     }
 }

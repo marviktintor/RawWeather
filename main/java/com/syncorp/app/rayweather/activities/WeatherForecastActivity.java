@@ -29,6 +29,7 @@ import com.syncorp.app.rayweather.constants.AppConstants;
 import com.syncorp.app.rayweather.datamodels.WeatherForecastsModel;
 import com.syncorp.app.rayweather.datamodels.WeatherModel;
 import com.syncorp.app.rayweather.extra.apis.openweathermap.OpenWeatherAPI;
+import com.syncorp.app.rayweather.utils.app.RayWeatherUtils;
 import com.syncorp.app.rayweather.utils.forecast.ForecastListUtils;
 import com.syncorp.app.rayweather.utils.forecast.ForecastUtils;
 import com.syncorp.app.rayweather.worker.DummyWorker;
@@ -101,7 +102,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
 
         try {
             dummyWorker = new DummyWorker(WeatherForecastActivity.this);
-            forecastUtils = new ForecastUtils(new JSONObject(dummyWorker.getForecastJSON()));
+            forecastUtils = new ForecastUtils(new JSONObject(RayWeatherUtils.getForecastJSON()));
             foreacastListUtils = new ForecastListUtils();
         } catch (Exception e) {
             Snackbar snackbar = Snackbar.make(toolbar, "Cannot load weather information", Snackbar.LENGTH_INDEFINITE);

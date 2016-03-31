@@ -8,5 +8,5 @@
         android:key="key_ring" />
     <EditTextPreference
         android:title="Geographical Settings"
-        android:key="key_geo" />
+        android:key="key_geographical" />
 </PreferenceScreen>

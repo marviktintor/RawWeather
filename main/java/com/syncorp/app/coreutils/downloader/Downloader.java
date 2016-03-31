@@ -36,7 +36,7 @@ public final class Downloader {
                     InputStream inputStream = urlConnection.getInputStream();
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 
-                    String filename = fileUri.substring(fileUri.lastIndexOf("/"));
+                    String filename = filePath.substring(filePath.lastIndexOf("/"));
                     int count = 0;
                     byte[] buffer = new byte[1024];
 

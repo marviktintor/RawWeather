@@ -27,46 +27,5 @@ public class DummyWorker {
     }
 
 
-    /**
-     * Returns the today weather json as string
-     *
-     * @return today weather as string json
-     */
-    public  String getTodayWeatherJSON() {
-        return readTestJSON("today.json");
-    }
 
-    /**
-     * Returns the forecast json as string
-     *
-     * @return forecast string json
-     */
-    public  String getForecastJSON() {
-        return readTestJSON("forecast.json");
-    }
-
-    /**
-     * Reads test json
-     *
-     * @param filename
-     * @return
-     */
-    public  String readTestJSON(String filename) {
-        try {
-            InputStream open =context.getResources().getAssets().open(filename);
-            InputStreamReader inputStreamReader = new InputStreamReader(open);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            String readData = "";
-            StringBuffer stringBuffer = new StringBuffer();
-            while ((readData = bufferedReader.readLine()) != null) {
-                stringBuffer.append(readData);
-            }
-            return stringBuffer.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return e.toString();
-        }
-    }
 }

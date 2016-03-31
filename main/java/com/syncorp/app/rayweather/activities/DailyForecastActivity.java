@@ -1,6 +1,10 @@
 package com.syncorp.app.rayweather.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +15,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.syncorp.app.coreutils.intents.Intents;
+import com.syncorp.app.coreutils.utils.Utilities;
 import com.syncorp.app.rayweather.R;
+import com.syncorp.app.rayweather.constants.AppConstants;
+import com.syncorp.app.rayweather.utils.app.RayWeatherUtils;
 import com.syncorp.app.rayweather.utils.weather.WeatherUtils;
-import com.syncorp.app.rayweather.worker.DummyWorker;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -30,12 +36,13 @@ public class DailyForecastActivity extends AppCompatActivity {
     private TextView hum;
 
     private WeatherUtils weatherUtils;
-    private DummyWorker dummyWorker;
+    private Utilities utilities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_forecast);
+
 
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
@@ -53,16 +60,16 @@ public class DailyForecastActivity extends AppCompatActivity {
 
 
         try {
-            dummyWorker = new DummyWorker(this);
-            weatherUtils = new WeatherUtils(new JSONObject(dummyWorker.getTodayWeatherJSON()));
+            weatherUtils = new WeatherUtils(new JSONObject(RayWeatherUtils.getForecastJSON()));
             showWeatherInfo();
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            RayWeatherUtils.updateAll(DailyForecastActivity.this);
             Snackbar snackbar = Snackbar.make(temp, "Cannot load weather information", Snackbar.LENGTH_INDEFINITE);
             snackbar.setAction("Close", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    /*finish();*/
                 }
             });
             snackbar.show();
@@ -74,11 +81,18 @@ public class DailyForecastActivity extends AppCompatActivity {
             temp.setText("76/51");
             hum.setText("60 hpa");
         }
+
+        utilities = new Utilities(DailyForecastActivity.this);
+        registerReceiver(receiver, new IntentFilter(AppConstants.Intents.WeatherUpdates.ACTION_NEW_WEATHER_UPDATES));
+
     }
 
-    private void showWeatherInfo() throws JSONException {
+    private void showWeatherInfo() throws Exception {
 
-        wicon.setImageResource(R.drawable.sunny); // TODO USE DOWNLOADED WEATHER ICON
+        String weatherIcon = weatherUtils.getWeatherIcon();
+        String weatherIconFileUri = AppConstants.WEATHER_ICONS_STORAGE_DIR + "/" + weatherIcon + ".png";
+        Bitmap weatherBitmap = utilities.getFileBitmap(weatherIconFileUri);
+        wicon.setImageBitmap(weatherBitmap);
 
         dday.setText(new SimpleDateFormat("EEE").format(new Date(System.currentTimeMillis())));
         ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(System.currentTimeMillis())));
@@ -110,4 +124,25 @@ public class DailyForecastActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(AppConstants.Intents.WeatherUpdates.ACTION_NEW_WEATHER_UPDATES)) {
+                try {
+                    showWeatherInfo();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (intent.getAction().equals(Intents.Broadcasts.ACTION_FILE_DOWNLOADED)) {
+
+            }
+        }
+    };
 }

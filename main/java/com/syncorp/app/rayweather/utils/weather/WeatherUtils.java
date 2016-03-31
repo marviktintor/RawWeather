@@ -4,7 +4,6 @@ package com.syncorp.app.rayweather.utils.weather;
 import com.syncorp.app.coreutils.json.JSONUtils;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -32,9 +31,9 @@ public strictfp class WeatherUtils {
      * Get Weather location coordinates
      *
      * @return
-     * @throws JSONException
+     * @throws Exception
      */
-    public final String[] getCoordinates() throws JSONException {
+    public final String[] getCoordinates() throws Exception {
         String coordinatesJSONObject = JSONUtils.optString(getWeatherJSON(), WeatherJSON.COORDS);
         JSONObject coordinatesJson = new JSONObject(coordinatesJSONObject);
         return new String[]{JSONUtils.optString(coordinatesJson, WeatherJSON.Coord.LONGITUDE), JSONUtils.optString(coordinatesJson, WeatherJSON.Coord.LATITUDE)};
@@ -49,9 +48,9 @@ public strictfp class WeatherUtils {
      * "icon": icon of the weather
      *
      * @return
-     * @throws JSONException
+     * @throws Exception
      */
-    public final JSONArray getWeather() throws JSONException {
+    public final JSONArray getWeather() throws Exception {
         return JSONUtils.optJSONArray(getWeatherJSON(), WeatherJSON.WEATHER);
     }
 
@@ -59,9 +58,9 @@ public strictfp class WeatherUtils {
      * Gets the weather id
      *
      * @return weather id
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getWeatherId() throws JSONException {
+    public final int getWeatherId() throws Exception {
         int weatherID = -1;
         for (int i = 0; i < getWeather().length(); i++) {
             JSONObject weatherInfo = (JSONObject) getWeather().get(i);
@@ -74,9 +73,9 @@ public strictfp class WeatherUtils {
      * Gets the main weather of a place e.g Clouds e.t.c
      *
      * @return
-     * @throws JSONException
+     * @throws Exception
      */
-    public final String getWeatherMain() throws JSONException {
+    public final String getWeatherMain() throws Exception {
         String weatherMain = "";
         for (int i = 0; i < getWeather().length(); i++) {
             JSONObject weatherInfo = (JSONObject) getWeather().get(i);
@@ -89,9 +88,9 @@ public strictfp class WeatherUtils {
      * Gets the weather description of a place e.g scattered clouds
      *
      * @return
-     * @throws JSONException
+     * @throws Exception
      */
-    public final String getWeatherDescription() throws JSONException {
+    public final String getWeatherDescription() throws Exception {
         String weatherDescription = "";
         for (int i = 0; i < getWeather().length(); i++) {
             JSONObject weatherInfo = (JSONObject) getWeather().get(i);
@@ -105,13 +104,13 @@ public strictfp class WeatherUtils {
      * http://openweathermap.org/img/w/${IMAGE_ID}.png
      *
      * @return weather icon image id
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getWeatherIcon() throws JSONException {
-        int weatherID = -1;
+    public final String getWeatherIcon() throws Exception {
+        String weatherID = null;
         for (int i = 0; i < getWeather().length(); i++) {
             JSONObject weatherInfo = (JSONObject) getWeather().get(i);
-            weatherID = weatherInfo.getInt(WeatherJSON.Weather.ICON);
+            weatherID = weatherInfo.getString(WeatherJSON.Weather.ICON);
         }
         return weatherID;
     }
@@ -136,9 +135,9 @@ public strictfp class WeatherUtils {
      * </ul>
      *
      * @return
-     * @throws JSONException
+     * @throws Exception
      */
-    public final JSONObject getMain() throws JSONException {
+    public final JSONObject getMain() throws Exception {
         return JSONUtils.optJSONObject(getWeatherJSON(), WeatherJSON.MAIN);
     }
 
@@ -147,19 +146,19 @@ public strictfp class WeatherUtils {
      * get the temperatures
      *
      * @return temperature value in metrics
-     * @throws JSONException
+     * @throws Exception
      */
-    public final double getTemperature() throws JSONException {
-        return JSONUtils.optDouble(getMain(), WeatherJSON.Main.TEMPERATURE);
+    public final int getTemperature() throws Exception {
+        return JSONUtils.optInt(getMain(), WeatherJSON.Main.TEMPERATURE);
     }
 
     /**
      * Returns the pressure
      *
      * @return pressure value
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getPressure() throws JSONException {
+    public final int getPressure() throws Exception {
         return JSONUtils.optInt(getMain(), WeatherJSON.Main.PRESSURE);
     }
 
@@ -167,9 +166,9 @@ public strictfp class WeatherUtils {
      * Returns the humidity
      *
      * @return humidity value
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getHumidity() throws JSONException {
+    public final int getHumidity() throws Exception {
         return JSONUtils.optInt(getMain(), WeatherJSON.Main.HUMIDITY);
     }
 
@@ -177,9 +176,9 @@ public strictfp class WeatherUtils {
      * Get the maximum temperatures of the day
      *
      * @return max temps
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getMaxTemperatures() throws JSONException {
+    public final int getMaxTemperatures() throws Exception {
         return JSONUtils.optInt(getMain(), WeatherJSON.Main.TEMPERATURE_MAX);
     }
 
@@ -187,9 +186,9 @@ public strictfp class WeatherUtils {
      * Gets the minimum temperatures of the day
      *
      * @return min temps
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getMinTemperatures() throws JSONException {
+    public final int getMinTemperatures() throws Exception {
         return JSONUtils.optInt(getMain(), WeatherJSON.Main.TEMPERATURE_MIN);
     }
 
@@ -197,9 +196,9 @@ public strictfp class WeatherUtils {
      * Gets the weather visibility
      *
      * @return visibility
-     * @throws JSONException
+     * @throws Exception
      */
-    public final int getVisibility() throws JSONException {
+    public final int getVisibility() throws Exception {
         return JSONUtils.optInt(getWeatherJSON(), WeatherJSON.VISIBILITY);
     }
 
@@ -224,8 +223,8 @@ public strictfp class WeatherUtils {
      *
      * @return wind speed
      */
-    public final float getWindSpeed() {
-        return JSONUtils.optFloat(getWind(), WeatherJSON.Wind.SPEED);
+    public final double getWindSpeed() {
+        return JSONUtils.optDouble(getWind(), WeatherJSON.Wind.SPEED);
     }
 
     /**

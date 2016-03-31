@@ -1,6 +1,10 @@
 package com.syncorp.app.rayweather;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,14 +17,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.syncorp.app.coreutils.intents.Intents;
+import com.syncorp.app.coreutils.utils.Utilities;
 import com.syncorp.app.rayweather.activities.MyPreferencesActivity;
 import com.syncorp.app.rayweather.activities.SettingsActivity;
+import com.syncorp.app.rayweather.constants.AppConstants;
 import com.syncorp.app.rayweather.fragments.NavDrawerFragment;
 import com.syncorp.app.rayweather.services.WeatherUpdateService;
+import com.syncorp.app.rayweather.utils.app.RayWeatherUtils;
 import com.syncorp.app.rayweather.utils.weather.WeatherUtils;
-import com.syncorp.app.rayweather.worker.DummyWorker;
 
-import org.json.JSONException;
+
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -40,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView hum;
 
     private WeatherUtils weatherUtils;
-    private DummyWorker dummyWorker;
+    private Utilities utilities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        utilities = new Utilities(MainActivity.this);
 
         startService(new Intent(getApplicationContext(), WeatherUpdateService.class));
 
@@ -75,32 +84,31 @@ public class MainActivity extends AppCompatActivity {
         hum = (TextView) findViewById(R.id.hum);
 
         try {
-            dummyWorker = new DummyWorker(MainActivity.this);
-            weatherUtils = new WeatherUtils(new JSONObject(dummyWorker.getTodayWeatherJSON()));
+            weatherUtils = new WeatherUtils(new JSONObject(RayWeatherUtils.getWeatherJSON()));
             showWeatherInfo();
-        } catch (JSONException e) {
+        } catch (Exception e) {RayWeatherUtils.updateAll(MainActivity.this);
+            RayWeatherUtils.updateAll(MainActivity.this);
             e.printStackTrace();
             Snackbar snackbar = Snackbar.make(temp, "Cannot load weather information", Snackbar.LENGTH_INDEFINITE);
             snackbar.setAction("Close", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    /*finish();*/
                 }
             });
             snackbar.show();
         }
 
-        if (false) {
-            wicon.setImageResource(R.drawable.sunny);
-            dday.setText(new SimpleDateFormat("EEE").format(new Date(System.currentTimeMillis())));
-            ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(System.currentTimeMillis())));
-            temp.setText("76/51");
-            hum.setText("60 hpa");
-        }
+
+        registerReceiver(receiver, new IntentFilter(AppConstants.Intents.WeatherUpdates.ACTION_NEW_WEATHER_UPDATES));
+
     }
 
-    private void showWeatherInfo() throws JSONException {
-        wicon.setImageResource(R.drawable.sunny); // TODO USE DOWNLOADED WEATHER ICON
+    private void showWeatherInfo() throws Exception {
+        String weatherIcon = weatherUtils.getWeatherIcon();
+        String weatherIconFileUri = AppConstants.WEATHER_ICONS_STORAGE_DIR + "/" + weatherIcon + ".png";
+        Bitmap weatherBitmap = utilities.getFileBitmap(weatherIconFileUri);
+        wicon.setImageBitmap(weatherBitmap);
 
         dday.setText(new SimpleDateFormat("EEE").format(new Date(System.currentTimeMillis())));
         ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(System.currentTimeMillis())));
@@ -133,4 +141,26 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(AppConstants.Intents.WeatherUpdates.ACTION_NEW_WEATHER_UPDATES)) {
+                try {
+                    showWeatherInfo();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (intent.getAction().equals(Intents.Broadcasts.ACTION_FILE_DOWNLOADED)) {
+
+            }
+        }
+    };
 }
