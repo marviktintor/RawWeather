@@ -1,8 +1,6 @@
 package com.syncorp.app.rayweather.activities;
 
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.syncorp.app.rayweather.R;
 import com.syncorp.app.rayweather.fragments.MyPreferencesFragment;
@@ -24,9 +21,7 @@ public class MyPreferencesActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        String temperature = ""+sharedPreferences.getInt("key_cloud_cover",0);
-        Toast.makeText(MyPreferencesActivity.this, temperature, Toast.LENGTH_SHORT).show();
+
         prepareLayout();
 
         buildLegacyPreferences();

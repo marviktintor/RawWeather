@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.syncorp.app.rayweather.activities.MyPreferencesActivity;
 import com.syncorp.app.rayweather.activities.SettingsActivity;
 import com.syncorp.app.rayweather.fragments.NavDrawerFragment;
+import com.syncorp.app.rayweather.services.WeatherUpdateService;
 import com.syncorp.app.rayweather.utils.weather.WeatherUtils;
 import com.syncorp.app.rayweather.worker.DummyWorker;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        startService(new Intent(getApplicationContext(), WeatherUpdateService.class));
 
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
@@ -63,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Data to be replaced with actual real time data once OpenWeatherMap API key is acquired
-        tvCondition = (TextView)findViewById(R.id.condition);
-        tvConditionDescription = (TextView)findViewById(R.id.condition_description);
+        tvCondition = (TextView) findViewById(R.id.condition);
+        tvConditionDescription = (TextView) findViewById(R.id.condition_description);
 
         wicon = (ImageView) findViewById(R.id.wIcon);
         dday = (TextView) findViewById(R.id.dday);

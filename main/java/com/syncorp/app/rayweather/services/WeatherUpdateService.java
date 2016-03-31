@@ -1,18 +1,20 @@
 package com.syncorp.app.rayweather.services;
 
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
 import com.syncorp.app.coreutils.utils.Utilities;
 import com.syncorp.app.rayweather.MainActivity;
 import com.syncorp.app.rayweather.R;
-import com.syncorp.app.rayweather.utils.app.RayWeatherUtils;
+import com.syncorp.app.rayweather.constants.AppConstants;
 
 /**
  * Created by victor on 3/31/2016.
@@ -45,8 +47,9 @@ public class WeatherUpdateService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        RayWeatherUtils.updateWeather(getApplicationContext());
-        RayWeatherUtils.updateForecast(getApplicationContext());
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 3000, 2000, PendingIntent.getBroadcast(getApplicationContext(), 1,
+                new Intent(AppConstants.Intents.WeatherUpdates.ACTION_REQUEST_NEW_WEATHER_UPDATES), PendingIntent.FLAG_UPDATE_CURRENT));
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -59,5 +62,7 @@ public class WeatherUpdateService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        sendNotification("Ray Weather", "All daemons killed");
     }
+
 }

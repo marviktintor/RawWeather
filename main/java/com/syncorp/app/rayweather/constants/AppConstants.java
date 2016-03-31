@@ -32,5 +32,18 @@ public class AppConstants {
             public static final String TEMPERATURES = "temperatures";
             public static final String HUMIDITY = "humidity";
         }
+
+        /**
+         * Weather updates
+         */
+
+        public class WeatherUpdates {
+
+            /**
+             * Intent sent when the weather information has been updated
+             */
+            public static final String ACTION_NEW_WEATHER_UPDATES = "com.syncorp.app.intent.ACTION_NEW_WEATHER_UPDATES";
+            public static final String ACTION_REQUEST_NEW_WEATHER_UPDATES = "com.syncorp.app.intent.ACTION_REQUEST_NEW_WEATHER_UPDATES";
+        }
     }
 }

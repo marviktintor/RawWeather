@@ -39,4 +39,8 @@ public class RayWeatherUtils {
         notificationManager.notify(notificationId, notificationCompat.build());
     }
 
+    public static void updateAll(Context context) {
+        RayWeatherUtils.updateWeather(context);
+        RayWeatherUtils.updateForecast(context);
+    }
 }

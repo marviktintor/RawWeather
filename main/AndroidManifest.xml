@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.syncorp.app.rayweather">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,20 +43,32 @@
         <activity
             android:name=".activities.WeatherForecastActivity"
             android:label="@string/title_activity_weekly_forecast"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.DailyForecastActivity"
             android:label="@string/title_activity_daily_forecast"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.MyPreferencesActivity"
             android:label="@string/title_activity_my_preferences"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.DetailsActivity"
             android:label="@string/title_activity_details"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
 
+        <service android:name=".services.WeatherUpdateService" />
+        <receiver android:name=".receiver.weatherupdates.WeatherUpdatesReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.syncorp.app.intent.ACTION_NEW_WEATHER_UPDATES" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.syncorp.app.intent.ACTION_REQUEST_NEW_WEATHER_UPDATES" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
