@@ -148,8 +148,8 @@ public strictfp class WeatherUtils {
      * @return temperature value in metrics
      * @throws Exception
      */
-    public final int getTemperature() throws Exception {
-        return JSONUtils.optInt(getMain(), WeatherJSON.Main.TEMPERATURE);
+    public final Object getTemperature() throws Exception {
+        return JSONUtils.opt(getMain(), WeatherJSON.Main.TEMPERATURE);
     }
 
     /**

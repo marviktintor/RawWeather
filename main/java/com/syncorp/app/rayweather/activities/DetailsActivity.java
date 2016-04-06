@@ -53,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
         wicon.setImageBitmap(new Utilities(DetailsActivity.this).getFileBitmap(weatherIconFileUri));
         dday.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_WEEK_DAY));
         ddate.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_DATE));
-        temp.setText("" + intent.getDoubleExtra(AppConstants.Intents.WeatherForecastDetails.TEMPERATURES, 23) +"F");
+        temp.setText("" + intent.getDoubleExtra(AppConstants.Intents.WeatherForecastDetails.TEMPERATURES, 23) +"C");
         hum.setText("" + intent.getIntExtra(AppConstants.Intents.WeatherForecastDetails.HUMIDITY, 0) +"hpa");
 
         condition.setText(intent.getStringExtra(AppConstants.Intents.WeatherForecastDetails.EXTRA_CONDITION));

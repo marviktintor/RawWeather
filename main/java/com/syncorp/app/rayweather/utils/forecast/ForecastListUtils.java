@@ -46,8 +46,8 @@ public strictfp class ForecastListUtils {
      * @param mainForecastListJSON
      * @return temperature
      */
-    public final double getTemperature(JSONObject mainForecastListJSON) {
-        return JSONUtils.optDouble(mainForecastListJSON, ForecastJSON.List.Main.TEMPERATURE);
+    public final Object getTemperature(JSONObject mainForecastListJSON) {
+        return JSONUtils.opt(mainForecastListJSON, ForecastJSON.List.Main.TEMPERATURE);
     }
 
     /**

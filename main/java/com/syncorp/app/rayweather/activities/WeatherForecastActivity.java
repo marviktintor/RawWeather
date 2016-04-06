@@ -140,7 +140,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
 
             JSONObject mainWeatherInfo = foreacastListUtils.getMain(forecastObject);
             int humidity = foreacastListUtils.getHumidty(mainWeatherInfo);
-            double temperatures = foreacastListUtils.getTemperature(mainWeatherInfo);
+            double temperatures = Double.valueOf(foreacastListUtils.getTemperature(mainWeatherInfo).toString());
 
             String weatherIconFileUri = AppConstants.WEATHER_ICONS_STORAGE_DIR + "/" + weatherIcon + ".png";
             Bitmap weatherBitmap = utilities.getFileBitmap(weatherIconFileUri);

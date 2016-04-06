@@ -65,7 +65,7 @@ public class DailyForecastActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             RayWeatherUtils.updateAll(DailyForecastActivity.this);
-            Snackbar snackbar = Snackbar.make(temp, "Cannot load weather information", Snackbar.LENGTH_INDEFINITE);
+            Snackbar snackbar = Snackbar.make(temp, "Showing latest weather information", Snackbar.LENGTH_INDEFINITE);
             snackbar.setAction("Close", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,13 +74,7 @@ public class DailyForecastActivity extends AppCompatActivity {
             });
             snackbar.show();
         }
-        if (false) {
-            wicon.setImageResource(R.drawable.sunny);
-            dday.setText(new SimpleDateFormat("dd EEE").format(new Date(currentTime)));
-            ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(currentTime)));
-            temp.setText("76/51");
-            hum.setText("60 hpa");
-        }
+
 
         utilities = new Utilities(DailyForecastActivity.this);
         registerReceiver(receiver, new IntentFilter(AppConstants.Intents.WeatherUpdates.ACTION_NEW_WEATHER_UPDATES));
@@ -98,8 +92,8 @@ public class DailyForecastActivity extends AppCompatActivity {
         ddate.setText(new SimpleDateFormat("yyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
 
-        temp.setText(String.format("%.2f", weatherUtils.getTemperature()));
-        hum.setText(String.format("%d", weatherUtils.getHumidity()));
+        temp.setText("" + weatherUtils.getTemperature() + " C");
+        hum.setText("" + weatherUtils.getHumidity());
     }
 
     @Override
@@ -130,6 +124,7 @@ public class DailyForecastActivity extends AppCompatActivity {
         super.onDestroy();
         unregisterReceiver(receiver);
     }
+
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {

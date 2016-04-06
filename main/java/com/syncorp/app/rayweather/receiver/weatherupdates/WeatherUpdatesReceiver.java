@@ -82,7 +82,7 @@ public class WeatherUpdatesReceiver extends BroadcastReceiver {
         }
         if (temperature.length() > 0 && TextUtils.isDigitsOnly(temperature)) {
             try {
-                int iTemperatures = weatherUtils.getTemperature();
+                int iTemperatures = Integer.parseInt(weatherUtils.getTemperature().toString());
                 if (iTemperatures > Integer.parseInt(temperature)) {
                     if (alertTemperature)
                         sendNotification(context, 6, "Temperatures", "The weather temperatures are higher than the ideal temperatures");

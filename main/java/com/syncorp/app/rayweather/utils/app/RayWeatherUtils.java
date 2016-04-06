@@ -78,6 +78,12 @@ public class RayWeatherUtils {
     }
 
     public static void updateAll(Context context) {
+
+        if(true){
+            RayWeatherUtils.updateWeather(context);
+            RayWeatherUtils.updateForecast(context);
+            return;
+        }
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         long lastUpdated = preferences.getLong(AppConstants.Preferences.LAST_UPDATED, System.currentTimeMillis());
 
